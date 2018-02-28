@@ -4,8 +4,9 @@ public class AccountOperationsTest {
         // Perform test
         Test.startTest();
         Account acc = new Account(Name='Test Account');
-        acc.Description = 'Default Description';
         Database.SaveResult result = Database.insert(acc);
+        acc = AccountOperations.setDefaultDescription(acc);
+        update acc;
         Test.stopTest();
         // Verify
         Account savedAcc = [SELECT Description FROM Account WHERE Id = :result.getId()];
